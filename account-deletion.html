@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konto löschen – Brain Clarity</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #0d0f14;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #12151c;
+      border-bottom: 1px solid #1e2535;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: -0.3px;
+    }
+
+    header p {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 48px auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      font-weight: 800;
+      color: #f1f5f9;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: #94a3b8;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .warning-box {
+      background: #1c1410;
+      border: 1px solid #854d0e;
+      border-radius: 12px;
+      padding: 18px 22px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 40px;
+    }
+
+    .warning-box .icon { font-size: 22px; flex-shrink: 0; }
+
+    .warning-box p {
+      font-size: 14px;
+      color: #fcd34d;
+      line-height: 1.55;
+    }
+
+    .warning-box strong { color: #fef08a; }
+
+    section { margin-bottom: 40px; }
+
+    section h3 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #6366f1;
+      margin-bottom: 16px;
+    }
+
+    .steps { display: flex; flex-direction: column; gap: 14px; }
+
+    .step {
+      background: #12151c;
+      border: 1px solid #1e2535;
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-body h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 4px;
+    }
+
+    .step-body p {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.55;
+    }
+
+    .step-body a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+
+    .step-body a:hover { text-decoration: underline; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .data-table thead tr {
+      background: #1a1d27;
+    }
+
+    .data-table th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      color: #94a3b8;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      border-bottom: 1px solid #1e2535;
+    }
+
+    .data-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid #1a1d27;
+      color: #cbd5e1;
+      line-height: 1.5;
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .data-table tbody tr:nth-child(odd) { background: #12151c; }
+    .data-table tbody tr:nth-child(even) { background: #0f111a; }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-delete {
+      background: #1f1315;
+      color: #f87171;
+      border: 1px solid #7f1d1d;
+    }
+
+    .badge-retain {
+      background: #0f1f13;
+      color: #4ade80;
+      border: 1px solid #14532d;
+    }
+
+    .badge-anon {
+      background: #1a1810;
+      color: #fb923c;
+      border: 1px solid #7c2d12;
+    }
+
+    .table-wrapper {
+      border: 1px solid #1e2535;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .email-card {
+      background: #12151c;
+      border: 1px solid #1e2535;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .email-card p {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-bottom: 16px;
+      line-height: 1.55;
+    }
+
+    .email-button {
+      display: inline-block;
+      padding: 13px 28px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .email-button:hover { opacity: 0.88; }
+
+    .email-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #475569;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 32px 24px;
+      text-align: center;
+      border-top: 1px solid #1e2535;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    footer a { color: #6366f1; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .hero h2 { font-size: 24px; }
+      main { margin: 32px auto; }
+      .data-table th, .data-table td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-icon">🧠</div>
+    <div>
+      <h1>Brain Clarity</h1>
+      <p>Kognitionstraining &amp; Gedächtnisförderung</p>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="hero">
+      <h2>Konto &amp; Daten löschen</h2>
+      <p>Hier kannst du die Löschung deines Brain-Clarity-Kontos und aller damit verbundenen persönlichen Daten beantragen.</p>
+    </div>
+
+    <div class="warning-box">
+      <div class="icon">⚠️</div>
+      <p>
+        <strong>Achtung – dieser Vorgang ist unwiderruflich.</strong><br />
+        Sobald dein Konto gelöscht ist, können Spielergebnisse, Fortschritt, Streak-Daten und dein Profil nicht wiederhergestellt werden.
+      </p>
+    </div>
+
+    <!-- SCHRITT-FÜR-SCHRITT -->
+    <section>
+      <h3>So beantragst du die Löschung</h3>
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-body">
+            <h4>Option A – direkt in der App</h4>
+            <p>Öffne Brain Clarity → <strong>Profil</strong> (unten rechts) → <strong>Einstellungen</strong> → <strong>Konto löschen</strong>. Bestätige mit deinem Passwort. Die Löschung wird sofort eingeleitet.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-body">
+            <h4>Option B – per E-Mail anfragen</h4>
+            <p>Schicke eine E-Mail an <a href="mailto:privacy@brain-clarity.app">privacy@brain-clarity.app</a> mit dem Betreff <em>„Kontolöschung"</em> und der E-Mail-Adresse, die du bei der Registrierung verwendet hast.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-body">
+            <h4>Bestätigung &amp; Bearbeitung</h4>
+            <p>Du erhältst innerhalb von <strong>48 Stunden</strong> eine Bestätigungs-E-Mail. Die vollständige Datenlöschung ist innerhalb von <strong>30 Tagen</strong> abgeschlossen.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DATENTABELLE -->
+    <section>
+      <h3>Was wird gelöscht – was wird aufbewahrt?</h3>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Datenart</th>
+              <th>Status</th>
+              <th>Aufbewahrungsdauer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Profil (Name, E-Mail, Avatar)</td>
+              <td><span class="badge badge-delete">Wird gelöscht</span></td>
+              <td>Sofort nach Abschluss der 30-Tage-Frist</td>
+            </tr>
+            <tr>
+              <td>Spielergebnisse &amp; Highscores</td>
+              <td><span class="badge badge-delete">Wird gelöscht</span></td>
+              <td>Innerhalb von 30 Tagen</td>
+            </tr>
+            <tr>
+              <td>Streak- &amp; XP-Daten</td>
+              <td><span class="badge badge-delete">Wird gelöscht</span></td>
+              <td>Innerhalb von 30 Tagen</td>
+            </tr>
+            <tr>
+              <td>Errungenschaften &amp; Abzeichen</td>
+              <td><span class="badge badge-delete">Wird gelöscht</span></td>
+              <td>Innerhalb von 30 Tagen</td>
+            </tr>
+            <tr>
+              <td>Leaderboard-Einträge</td>
+              <td><span class="badge badge-anon">Anonymisiert</span></td>
+              <td>Werden ohne Personenbezug für 90 Tage für Statistikzwecke anonymisiert gespeichert, danach endgültig gelöscht</td>
+            </tr>
+            <tr>
+              <td>Rechnungs- und Zahlungsdaten (falls vorhanden)</td>
+              <td><span class="badge badge-retain">Aufbewahrt</span></td>
+              <td>Gesetzliche Aufbewahrungspflicht: 10 Jahre (§ 147 AO / § 257 HGB)</td>
+            </tr>
+            <tr>
+              <td>Server-Logs (Sicherheit &amp; Missbrauchsprävention)</td>
+              <td><span class="badge badge-retain">Aufbewahrt</span></td>
+              <td>Maximal 90 Tage, ohne direkte Verknüpfung zum Konto</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- DIREKTER KONTAKT -->
+    <section>
+      <h3>Löschung jetzt beantragen</h3>
+      <div class="email-card">
+        <p>
+          Du kannst uns direkt per E-Mail kontaktieren. Bitte nenne die E-Mail-Adresse deines Brain-Clarity-Kontos, damit wir deine Anfrage schnell bearbeiten können.
+        </p>
+        <a class="email-button" href="mailto:privacy@brain-clarity.app?subject=Kontol%C3%B6schung%20Brain%20Clarity&body=Hallo%2C%0A%0Aich%20m%C3%B6chte%20mein%20Brain-Clarity-Konto%20und%20alle%20zugeh%C3%B6rigen%20Daten%20l%C3%B6schen%20lassen.%0A%0AMeine%20registrierte%20E-Mail-Adresse%3A%20%5Bhier%20eintragen%5D%0A%0AVielen%20Dank.">
+          ✉️ Löschung per E-Mail anfordern
+        </a>
+        <p class="email-note">Antwort innerhalb von 48 Stunden &bull; Vollständige Löschung innerhalb von 30 Tagen</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      Brain Clarity – Kognitionstraining App<br />
+      Bei Fragen zum Datenschutz: <a href="mailto:privacy@brain-clarity.app">privacy@brain-clarity.app</a><br />
+      <br />
+      Diese Seite wurde gemäß den <a href="https://support.google.com/googleplay/android-developer/answer/13327111" target="_blank" rel="noopener">Google Play Datenlöschungsrichtlinien</a> erstellt.
+    </p>
+  </footer>
+
+</body>
+</html>
