@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Brain Clarity</title>
+  <meta name="description" content="Privacy Policy for the Brain Clarity app — how we process your data under the GDPR.">
+  <meta name="theme-color" content="#0a0e1a">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">
+        <span class="nav__logo">BC</span>
+        <span>Brain Clarity</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li class="nav__link-extra"><a href="support.html" class="nav__link">Support</a></li>
+        <li class="nav__lang">
+          <a href="../datenschutz.html">DE</a>
+          <a href="privacy.html" class="is-active">EN</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="legal">
+    <div class="legal__container">
+
+      <h1>Privacy Policy</h1>
+      <p class="legal__subtitle">How we process your data under the GDPR</p>
+
+      <p>This Privacy Policy explains how snap DISCOVERY AG and snap GmbH ("we", "us", "Brain Clarity") collect, use, and protect your personal data when you use the Brain Clarity mobile application (the "App"). We process your data in accordance with the EU General Data Protection Regulation (GDPR) and the German Federal Data Protection Act (BDSG).</p>
+
+      <h2>1. Data Controllers</h2>
+      <p>Two separate legal entities are involved in operating Brain Clarity. Each is an independent controller under Art. 4 (7) GDPR for the data described below.</p>
+
+      <h3>1.1 snap DISCOVERY AG — controller for app and gameplay data</h3>
+      <div class="legal__address">
+        <p>snap DISCOVERY AG<br>
+        Gesundheitscampus-Süd 17<br>
+        44801 Bochum, Germany<br>
+        Email: <code>weber@snapdiscovery.de</code><br>
+        Phone: <code>+49 234 4799147-0</code></p>
+      </div>
+      <p>Responsible for: account, profile, and gameplay data (Sections 2.1 through 2.4 below).</p>
+
+      <h3>1.2 snap GmbH — controller for subscription billing data</h3>
+      <div class="legal__address">
+        <p>snap GmbH<br>
+        Gesundheitscampus-Süd 17<br>
+        44801 Bochum, Germany<br>
+        Email: <code>invoice@snap-gmbh.com</code><br>
+        Phone: <code>+49 234 4799147-0</code></p>
+      </div>
+      <p>Responsible for: subscription billing data we receive from Apple or Google in connection with Brain Clarity Pro (Section 2.7 below).</p>
+
+      <h2>2. Data We Collect</h2>
+
+      <h3>2.1 Account Data</h3>
+      <p>When you create an account, snap DISCOVERY AG collects and stores:</p>
+      <ul>
+        <li>Email address (required for login)</li>
+        <li>Password (stored only as a hash, never in plaintext)</li>
+        <li>Display name you choose</li>
+        <li>Account creation timestamp</li>
+      </ul>
+
+      <h3>2.2 Optional Profile Data</h3>
+      <p>During onboarding you may optionally provide age range, gender, education level, and your personal cognitive goal. Providing this is strictly optional and helps us personalize your Brain Profile. You can skip these fields or change them later.</p>
+
+      <h3>2.3 Gameplay Data</h3>
+      <p>As you play, we record:</p>
+      <ul>
+        <li>Game type, difficulty level, and date played</li>
+        <li>Normalized score (0–100) and raw game-specific metrics</li>
+        <li>Per-response reaction times (aggregated, not linked to content)</li>
+        <li>Streaks, XP, unlocked achievements</li>
+      </ul>
+
+      <h3>2.4 Technical Data</h3>
+      <p>We do <strong>not</strong> collect device identifiers, IP addresses, location data, contacts, or advertising IDs. Firebase may log minimal diagnostic information (crash reports, error logs) to keep the service running reliably.</p>
+
+      <h3>2.5 Local Notifications</h3>
+      <p>If you enable training reminders or the daily-riddle notification, the scheduling and content of these notifications happens entirely on your device. We do not run a push-notification server and do not collect any data when notifications are scheduled, fired, dismissed, or tapped. The riddle text shown in a notification is selected deterministically from a fixed catalog shipped with the app — no server is queried.</p>
+      <p>You can turn each notification stream on or off, change the reminder time, or revoke the system-level permission at any time:</p>
+      <ul>
+        <li>In-app: Profile → Settings → Notifications</li>
+        <li>iOS: Settings → Brain Clarity → Notifications</li>
+        <li>Android: Settings → Apps → Brain Clarity → Notifications</li>
+      </ul>
+      <p>We do not send marketing or promotional notifications under any circumstance. The notification streams listed above are functional reminders that you have explicitly opted into.</p>
+
+      <h3>2.6 Two-factor Authentication (2FA)</h3>
+      <p>To protect your account, Brain Clarity uses mandatory two-factor authentication via email. After you enter your password at sign-in, we send a six-digit one-time code to your verified email address. You must enter this code to complete the sign-in.</p>
+      <p>For this we process:</p>
+      <ul>
+        <li>Your email address (already on file from registration)</li>
+        <li>The hashed one-time code (the plaintext is <strong>never</strong> stored — we keep only a SHA-256 hash with a per-code salt; the code expires after 5 minutes)</li>
+        <li>Hashes of your 10 single-use recovery codes (we never store the plaintext; you save the codes yourself when you set up 2FA)</li>
+        <li>Timestamps of code requests, used for rate-limiting</li>
+      </ul>
+      <p>These data are stored exclusively in our processing infrastructure (Google Firestore — see Section 5) and are never shared with third parties beyond the email-delivery provider listed below.</p>
+      <p><code>noreply@brainclarity.de</code> is operated through <code>ActiveCampaign Postmark Inc.</code> (Postmark, USA), our transactional email processor. Postmark handles only the delivery of the one-time codes; they do not receive your account data, scores, or profile. Data transferred to Postmark is limited to your email address and the email body containing the code. The transfer relies on the EU Standard Contractual Clauses (SCCs, 2021/914) as the Art. 46 GDPR safeguard.</p>
+      <p><strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in protecting the security of your account) and Art. 32 GDPR (security of processing).</p>
+
+      <h3>2.7 Subscription Billing Data (Brain Clarity Pro)</h3>
+      <p>If you purchase a Brain Clarity Pro subscription, the actual payment is processed by Apple Inc. (App Store) or Google Ireland Limited (Google Play), who act as the merchant of record. We do <strong>not</strong> receive your payment-card details. Through our subscription-management provider (RevenueCat), snap GmbH receives:</p>
+      <ul>
+        <li>An anonymous subscription identifier linked to your account</li>
+        <li>Subscription status (active, trial, lapsed, refunded)</li>
+        <li>Plan tier, start date, renewal date</li>
+        <li>Country of purchase (for tax-reporting purposes)</li>
+      </ul>
+      <p>We use this data only to grant Pro entitlements, comply with tax-reporting obligations, and answer support requests about your subscription.</p>
+
+      <h2>3. Legal Basis for Processing</h2>
+      <ul>
+        <li><strong>Art. 6(1)(b) GDPR</strong> — performance of the user agreement: required to operate the App, store your scores, provide your Brain Profile, and (for Pro users) deliver the subscribed service.</li>
+        <li><strong>Art. 6(1)(a) GDPR</strong> — your consent: for optional profile data and any analytics we may add in the future.</li>
+        <li><strong>Art. 6(1)(c) GDPR</strong> — legal obligation: subscription/billing records retained to comply with German tax and commercial-law retention requirements (Section 6 below).</li>
+        <li><strong>Art. 6(1)(f) GDPR</strong> — legitimate interests: for security, fraud prevention, and protecting the integrity of leaderboards.</li>
+      </ul>
+
+      <h2>4. How We Use Your Data</h2>
+      <ul>
+        <li>Authenticate your account and sync your progress across devices</li>
+        <li>Compute your Brain Profile, stats, streaks, and achievements</li>
+        <li>Rank scores on daily, weekly, and all-time leaderboards</li>
+        <li>Grant and manage Brain Clarity Pro entitlements (Pro users only)</li>
+        <li>Keep the service secure and prevent score tampering</li>
+      </ul>
+      <p>We do <strong>not</strong> sell your data. We do <strong>not</strong> use your data for advertising.</p>
+
+      <h2>5. Service Providers &amp; Data Transfers</h2>
+      <p>We use the following processors under data-processing agreements (Art. 28 GDPR):</p>
+      <ul>
+        <li><strong>Google Firebase</strong> (Firebase Authentication, Cloud Firestore, Cloud Functions) for the App backend. Operated by Google Ireland Limited within the EU, with some processing taking place at Google LLC in the United States. Transfers covered by the EU–U.S. Data Privacy Framework and Standard Contractual Clauses where required.</li>
+        <li><strong>RevenueCat</strong> (RevenueCat, Inc., USA) for subscription management on behalf of snap GmbH. Used only when a user starts a Pro trial or subscription. Transfers covered by Standard Contractual Clauses.</li>
+        <li><strong>Apple Inc.</strong> and <strong>Google Ireland Limited</strong> as the merchant of record for App Store / Google Play subscription purchases. Their handling of your payment data is governed by their own privacy policies.</li>
+      </ul>
+
+      <h2>6. Retention</h2>
+      <ul>
+        <li><strong>Account data:</strong> for as long as your account exists.</li>
+        <li><strong>Scores and gameplay data:</strong> retained while your account is active so you can see your history.</li>
+        <li><strong>Subscription/billing records:</strong> retained for the statutory periods required by German commercial and tax law (typically 6 to 10 years under §§ 147 AO, 257 HGB), even after account deletion.</li>
+        <li><strong>After account deletion:</strong> app and profile data is deleted within 30 days; aggregated, non-identifying statistics may be retained.</li>
+      </ul>
+
+      <h2>7. Your Rights</h2>
+      <p>Under the GDPR you have the right to:</p>
+      <ul>
+        <li>Request access to your personal data (Art. 15)</li>
+        <li>Request correction of inaccurate data (Art. 16)</li>
+        <li>Request deletion of your data (Art. 17)</li>
+        <li>Request restriction of processing (Art. 18)</li>
+        <li>Data portability (Art. 20) — export your data in a machine-readable format</li>
+        <li>Object to processing based on legitimate interests (Art. 21)</li>
+        <li>Withdraw any consent at any time, without affecting prior lawful processing</li>
+      </ul>
+      <p>To exercise rights related to app or gameplay data, contact <code>weber@snapdiscovery.de</code>. To exercise rights related to subscription billing data, contact <code>invoice@snap-gmbh.com</code>. You can also use the in-app tools in the Profile screen at any time:</p>
+      <ul>
+        <li><strong>Download my data</strong> — exports your profile and all scores as a JSON file (Art. 20 data portability).</li>
+        <li><strong>Delete my account</strong> — permanently removes your account and all associated data (Art. 17 right to erasure). Note: subscription/billing records are retained for statutory periods (see Section 6).</li>
+      </ul>
+
+      <h2>8. Right to Lodge a Complaint</h2>
+      <p>You have the right to lodge a complaint with a supervisory authority. The authority responsible for both controllers is the</p>
+      <div class="legal__address">
+        <p><strong>Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)</strong><br>
+        Kavalleriestr. 2–4<br>
+        40213 Düsseldorf, Germany<br>
+        <a href="https://www.ldi.nrw.de" target="_blank" rel="noopener noreferrer">www.ldi.nrw.de</a></p>
+      </div>
+
+      <h2>9. Security</h2>
+      <p>All traffic between the App and our backend is encrypted in transit (TLS). Passwords are never stored in plaintext. Access to production data is restricted to authorized personnel. Leaderboard writes go through Cloud Functions to prevent tampering.</p>
+
+      <h2>10. Children</h2>
+      <p>Brain Clarity is not directed at children under 16. If you are under 16, you must have the consent of a parent or guardian before using the App. If we learn that we have collected data from a child under 16 without the required consent, we will delete it.</p>
+
+      <h2>11. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy as the App evolves. If we make material changes, we will notify you in-app before the changes take effect.</p>
+
+      <div class="legal__note">
+        <strong>Note:</strong> The final version of this document should be reviewed by a qualified German data-protection lawyer before market launch.
+      </div>
+
+      <p class="legal__updated">Last updated: 20 May 2026</p>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border-top: none; padding-top: 0;">
+        <span>© 2026 snap DISCOVERY AG · snap GmbH · Bochum, Germany</span>
+        <span>
+          <a href="index.html" style="color: inherit; text-decoration: none;">Home</a> ·
+          <a href="legal-notice.html" style="color: inherit; text-decoration: none;">Legal Notice</a> ·
+          <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/cookie-banner.js"></script>
+</body>
+</html>
