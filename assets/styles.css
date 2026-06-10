@@ -335,10 +335,11 @@ body {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: var(--space-2);
+  color: var(--text-primary) !important;
 }
 .game-card__desc {
   font-size: 14px;
-  color: var(--text-secondary);
+  color: var(--text-secondary) !important;
   line-height: 1.5;
 }
 
