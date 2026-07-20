@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kunst und Kirche 2026 · Lions Club Bochum Allegra</title>
+<style>
+  :root {
+    --primary: #1f3864;
+    --primary-light: #2e5496;
+    --accent: #c8a35a;
+    --bg: #f7f5f0;
+    --card: #ffffff;
+    --text: #222;
+    --muted: #666;
+    --border: #e0dbd0;
+    --success: #4a7c3a;
+    --highlight: #fdf6e3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 .3rem; font-size: 2.4rem; letter-spacing: -.5px; }
+  header .subtitle { font-size: 1.1rem; opacity: .9; margin: 0 0 .6rem; }
+  header .meta { font-size: .95rem; opacity: .85; font-style: italic; }
+  nav {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: .8rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,.04);
+  }
+  nav a { color: var(--primary); text-decoration: none; font-weight: 500; margin-right: 1.2rem; font-size: .92rem; }
+  nav a:hover { color: var(--accent); }
+  main { max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  section {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  h2 { color: var(--primary); border-bottom: 3px solid var(--accent); padding-bottom: .5rem; margin-top: 0; font-size: 1.6rem; }
+  h3 { color: var(--primary-light); margin-top: 1.6rem; font-size: 1.15rem; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .93rem; }
+  th { background: var(--primary); color: white; text-align: left; padding: .6rem .8rem; font-weight: 600; }
+  td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: #fafaf7; }
+  ul { padding-left: 1.4rem; }
+  li { margin-bottom: .3rem; }
+  .kv { display: grid; grid-template-columns: 200px 1fr; gap: .6rem 1rem; margin: 1rem 0; }
+  .kv .k { font-weight: 600; color: var(--primary); }
+  .letter { background: var(--highlight); border-left: 4px solid var(--accent); padding: 1.2rem 1.4rem; border-radius: 4px; font-family: Georgia, serif; }
+  .team-card { background: #fafaf7; border-left: 4px solid var(--accent); padding: 1rem 1.2rem; border-radius: 4px; margin: .8rem 0; }
+  .team-card h3 { margin-top: 0; color: var(--primary); }
+  .team-card .names { font-weight: 600; color: var(--primary-light); margin-bottom: .5rem; font-size: .95rem; }
+
+  .checklist { margin: 1rem 0; }
+  .phase { margin-bottom: 1.8rem; }
+  .phase-title { background: var(--primary); color: white; padding: .6rem 1rem; border-radius: 6px 6px 0 0; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .phase-title .counter { font-size: .85rem; opacity: .9; }
+  .phase-items { border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; background: white; }
+  .check-item { display: flex; align-items: flex-start; padding: .55rem .9rem; border-bottom: 1px solid var(--border); cursor: pointer; transition: background .15s; }
+  .check-item:last-child { border-bottom: none; }
+  .check-item:hover { background: #fafaf7; }
+  .check-item input[type="checkbox"] { margin: .3rem .7rem 0 0; width: 18px; height: 18px; cursor: pointer; accent-color: var(--success); flex-shrink: 0; }
+  .check-item.done label { text-decoration: line-through; color: var(--muted); }
+  .check-item label { cursor: pointer; user-select: none; flex: 1; }
+
+  .progress-overall { background: white; padding: 1rem 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,.05); display: flex; align-items: center; gap: 1rem; }
+  .progress-overall .label { font-weight: 600; color: var(--primary); min-width: 200px; }
+  .progress-bar { flex: 1; height: 14px; background: var(--border); border-radius: 7px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--success), #7fb069); transition: width .3s; }
+  .progress-overall .count { font-variant-numeric: tabular-nums; color: var(--muted); min-width: 80px; text-align: right; }
+
+  .actions { display: flex; gap: .7rem; margin-top: 1rem; flex-wrap: wrap; }
+  button { background: var(--primary); color: white; border: none; padding: .55rem 1rem; border-radius: 6px; cursor: pointer; font-size: .9rem; font-weight: 500; }
+  button:hover { background: var(--primary-light); }
+  button.secondary { background: white; color: var(--primary); border: 1px solid var(--primary); }
+  button.danger { background: #b04040; }
+  button.accent { background: var(--accent); color: #3a2a08; }
+
+  .badge { display: inline-block; padding: .15rem .55rem; border-radius: 10px; font-size: .75rem; font-weight: 600; margin-right: .3rem; }
+  .badge-kontakt { background: #e3f0ff; color: #1f5090; }
+  .badge-vertrag { background: #fdecc8; color: #8b6914; }
+  .badge-event { background: #ffe3e3; color: #a03030; }
+
+  /* Catering-Entscheidung */
+  .decision-cell input[type="radio"] { margin-right: .3rem; }
+  .decision-cell label { margin-right: .8rem; font-size: .85rem; cursor: pointer; }
+  .decision-cell .note { display: block; margin-top: .3rem; }
+  .decision-cell .note input { width: 100%; padding: .35rem; border: 1px solid var(--border); border-radius: 4px; font-size: .85rem; }
+  td.decision-cell.dec-yes { background: #e6f5e0 !important; }
+  td.decision-cell.dec-no { background: #f5e0e0 !important; }
+  td.decision-cell.dec-other { background: #fff4d6 !important; }
+
+  /* Kommentare */
+  .comment-note { background: #fff8e1; border-left: 4px solid #f0b040; padding: .8rem 1rem; border-radius: 4px; margin-bottom: 1rem; font-size: .9rem; }
+  .comment-form { display: grid; grid-template-columns: 1fr; gap: .6rem; margin: 1rem 0; padding: 1rem; background: #fafaf7; border-radius: 8px; border: 1px solid var(--border); }
+  .comment-form .row { display: grid; grid-template-columns: 180px 1fr 140px; gap: .6rem; align-items: start; }
+  .comment-form input, .comment-form textarea, .comment-form select { padding: .55rem .7rem; border: 1px solid var(--border); border-radius: 6px; font-size: .95rem; font-family: inherit; background: white; }
+  .comment-form textarea { min-height: 70px; resize: vertical; }
+  .comments-list { margin-top: 1rem; }
+  .comment { background: white; border: 1px solid var(--border); border-radius: 8px; padding: .9rem 1.1rem; margin-bottom: .7rem; position: relative; }
+  .comment.question { border-left: 4px solid #d97706; }
+  .comment.comment-type { border-left: 4px solid var(--primary-light); }
+  .comment.answered { opacity: .55; }
+  .comment .head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .3rem; flex-wrap: wrap; gap: .3rem; }
+  .comment .who { font-weight: 600; color: var(--primary); }
+  .comment .when { font-size: .8rem; color: var(--muted); }
+  .comment .tag { display: inline-block; margin-left: .5rem; padding: .1rem .5rem; border-radius: 10px; font-size: .7rem; font-weight: 600; }
+  .tag-question { background: #fef3c7; color: #92400e; }
+  .tag-comment { background: #dbeafe; color: #1e40af; }
+  .tag-context { background: #ede9fe; color: #5b21b6; font-size: .7rem; margin-left: .4rem; padding: .1rem .5rem; border-radius: 10px; }
+  .comment .body { margin: .3rem 0; white-space: pre-wrap; }
+  .comment .actions-inline { display: flex; gap: .4rem; margin-top: .4rem; }
+  .comment .actions-inline button { padding: .25rem .6rem; font-size: .78rem; }
+  .empty { color: var(--muted); font-style: italic; text-align: center; padding: 1.5rem; }
+
+  /* Gantt */
+  .gantt-wrapper { margin: 1rem 0 2rem; overflow-x: auto; padding-bottom: .5rem; }
+  .gantt-legend { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .8rem; font-size: .78rem; }
+  .gantt-legend .chip { padding: .18rem .55rem; border-radius: 10px; color: white; font-weight: 600; }
+  .gantt {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 3px 0;
+    min-width: 900px;
+    border-top: 1px solid var(--border);
+    background: white;
+  }
+  .gantt-header { display: contents; }
+  .gantt-header .gantt-label-cell { font-weight: 600; padding: 6px 8px; background: #fafaf7; border-bottom: 1px solid var(--border); font-size: .78rem; color: var(--muted); }
+  .gantt-months { display: grid; grid-template-columns: repeat(14, 1fr); gap: 2px; }
+  .gantt-months > div { background: var(--primary); color: white; text-align: center; padding: 4px 2px; font-size: .78rem; font-weight: 600; border-radius: 3px; }
+  .gantt-weeks { display: grid; grid-template-columns: repeat(14, 1fr); gap: 2px; }
+  .gantt-weeks > div { background: #f0ebd8; text-align: center; padding: 3px 2px; font-size: .68rem; font-weight: 600; color: #555; border-radius: 2px; }
+  .gantt-row { display: contents; }
+  .gantt-row .gantt-label-cell { font-size: .8rem; padding: 5px 8px; border-bottom: 1px solid #f5f0e5; display: flex; align-items: center; }
+  .gantt-track { display: grid; grid-template-columns: repeat(14, 1fr); gap: 2px; padding: 3px 0; border-bottom: 1px solid #f5f0e5; position: relative; }
+  .gantt-track .event-marker { position: absolute; top: 0; bottom: 0; left: calc(100%/14 * 9); width: calc(100%/14); background: rgba(233,30,99,.08); pointer-events: none; z-index: 0; }
+  .gantt-track .today-marker { position: absolute; top: 0; bottom: 0; left: 0; width: calc(100%/14); background: rgba(76,175,80,.12); border-right: 2px solid #4CAF50; pointer-events: none; z-index: 0; }
+  .bar { color: white; padding: 4px 6px; border-radius: 3px; font-size: .7rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; z-index: 1; min-height: 20px; display: flex; align-items: center; justify-content: center; }
+  .bar.t1 { background: #2196F3; }
+  .bar.t2 { background: #4CAF50; }
+  .bar.t3 { background: #9C27B0; }
+  .bar.t4 { background: #FF9800; }
+  .bar.t5 { background: #009688; }
+  .bar.t6 { background: #F44336; }
+  .bar.t7 { background: #607D8B; }
+  .bar.t8 { background: #795548; }
+  .bar.all { background: #333; }
+  .bar.event { background: #E91E63; box-shadow: 0 0 0 2px white, 0 0 0 4px #E91E63; }
+
+  /* Prominente Mail-Aufrufe */
+  .send-callout {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffe8a3 100%);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .send-callout .text { flex: 1; min-width: 220px; }
+  .send-callout .text strong { display: block; color: #6b4c00; font-size: 1rem; margin-bottom: .2rem; }
+  .send-callout .text span { font-size: .88rem; color: #5a4400; }
+  .send-callout .big-mail-btn {
+    background: var(--accent);
+    color: #2a1a00;
+    border: none;
+    padding: .8rem 1.4rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .send-callout .big-mail-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,.2); background: #d4b070; }
+
+  footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 2rem 1rem; }
+
+  @media print {
+    nav, .actions, button, .progress-overall, .comment-form, .comment-note { display: none !important; }
+    section { box-shadow: none; page-break-inside: avoid; }
+    body { background: white; }
+    header { background: white !important; color: var(--primary) !important; }
+  }
+  @media (max-width: 700px) {
+    header h1 { font-size: 1.8rem; }
+    section { padding: 1.2rem 1rem; }
+    .kv { grid-template-columns: 1fr; gap: .2rem 0; }
+    .kv .k { margin-top: .5rem; }
+    nav { font-size: .85rem; }
+    table { font-size: .82rem; }
+    th, td { padding: .4rem .5rem; }
+    .comment-form .row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Passwort-Overlay -->
+<div id="pwOverlay" style="position:fixed;inset:0;background:linear-gradient(135deg,#1f3864,#2e5496);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:white;border-radius:12px;padding:2.5rem 2rem;max-width:400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.4);text-align:center;">
+    <div style="font-size:2.4rem;margin-bottom:.5rem">🔒</div>
+    <h1 style="color:#1f3864;margin:0 0 .3rem;font-size:1.4rem">Kunst und Kirche 2026</h1>
+    <p style="color:#666;margin:.3rem 0 1.5rem;font-size:.9rem">Team-Seite · Passwort erforderlich</p>
+    <form id="pwForm" style="display:flex;flex-direction:column;gap:.7rem" onsubmit="return checkPassword(event)">
+      <input type="password" id="pwInput" placeholder="Passwort eingeben" autocomplete="off" autofocus style="padding:.7rem .9rem;border:2px solid #e0dbd0;border-radius:6px;font-size:1rem;font-family:inherit" />
+      <button type="submit" style="background:#1f3864;color:white;border:none;padding:.75rem;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer">Freischalten</button>
+      <div id="pwError" style="color:#b04040;font-size:.85rem;min-height:1.2em"></div>
+    </form>
+    <p style="color:#999;font-size:.75rem;margin:1rem 0 0">Bei Fragen zum Passwort wende dich an Corinna</p>
+  </div>
+</div>
+
+<div id="protectedContent" style="display:none">
+
+<header>
+  <h1>Kunst und Kirche 2026</h1>
+  <p class="subtitle">Team-Seite · Planung, Aufgaben, Checkliste & Kommentare</p>
+  <p class="meta">Lions Club Bochum Allegra · Pauluskirche Bochum · Donnerstag, 24. September 2026</p>
+</header>
+
+<nav>
+  <a href="#anschreiben">Anschreiben</a>
+  <a href="#eckdaten">Eckdaten</a>
+  <a href="#teams">Teams</a>
+  <a href="#zeitachse">Zeitachse</a>
+  <a href="#aufgaben">Aufgaben</a>
+  <a href="#budget">Budget</a>
+  <a href="#programm">Programm</a>
+  <a href="#catering">Catering</a>
+  <a href="#partner">Partner</a>
+  <a href="#kommunikation">Kommunikation</a>
+  <a href="#lessons">Lessons Learned</a>
+  <a href="#checkliste">Checkliste</a>
+  <a href="#kommentare">Kommentare</a>
+</nav>
+
+<main>
+
+<div class="progress-overall">
+  <span class="label">Fortschritt Gesamt-Checkliste:</span>
+  <div class="progress-bar"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+  <span class="count" id="progCount">0 / 0</span>
+</div>
+
+<section id="anschreiben">
+  <h2>Anschreiben an das Orga-Team</h2>
+  <div class="letter">
+    <p>Liebe Freundinnen und Freunde des Orga-Teams,</p>
+    <p>nach zwei erfolgreichen Kunst-und-Kirche-Jahren wollen wir 2026 an das Bewährte anknüpfen und die Veranstaltung wieder zu einem schönen Abend für unseren Club, für unsere Gäste und – vor allem – für unsere Spendenempfänger machen. <strong>Neu 2026: eintägig am Donnerstag, 24. September 2026.</strong> Wir haben uns in <strong>acht Teams</strong> organisiert – ihr findet eure Namen und Verantwortungsbereiche direkt unten.</p>
+    <p>Bitte prüft die euch zugeordneten Aufgaben, tragt die Deadlines schon jetzt in den Kalender ein und meldet euch, falls etwas fehlt. Fragen und Anmerkungen könnt ihr direkt unten im Bereich <em>Kommentare</em> hinterlegen.</p>
+    <p>Herzlichen Dank für euer Engagement – ich freue mich auf ein tolles Team-Jahr!</p>
+    <p>Herzliche Grüße<br>Corinna</p>
+  </div>
+</section>
+
+<section id="eckdaten">
+  <h2>1. Eckdaten</h2>
+  <div class="kv">
+    <div class="k">Termin</div><div><strong>Donnerstag, 24.09.2026 – EINTÄGIG</strong> (Aufbau Mi 23.09., Event Do-Abend, Abbau Do spät bzw. Fr 25.09. vormittags)</div>
+    <div class="k">Ort</div><div>Ev. Pauluskirche Bochum, Grabenstraße 9, 44787 Bochum</div>
+    <div class="k">Format</div><div>Eintägig – Vernissage, Konzert und Versteigerung am Donnerstagabend</div>
+    <div class="k">Kapazität lt. GEMA</div><div>70 Sitzplätze; Planung ca. 150–200 Besucher</div>
+    <div class="k">Spendenempfänger 2026</div><div>wird durch Team 2 (Kasse & Finanzen) vorgeschlagen und mit dem Vorstand abgestimmt (2025: Menschenskinder e.V., Ergebnis 8.418,48 €)</div>
+    <div class="k">Aktivitätsleitung</div><div>Corinna Weber</div>
+  </div>
+</section>
+
+<section id="teams">
+  <h2>2. Teams & Verantwortlichkeiten</h2>
+  <p><em>Zusagen für die 8 Orga-Teams 2026. LEO-Koordination wird im 1. Orga-Termin ergänzt (2025 bewährt: Sylvia Lichtenberger). Team 8 basiert auf dem 2025er Bar-Team und wird im 1. Orga-Termin final bestätigt.</em></p>
+
+  <div class="team-card">
+    <h3>Team 1 · Ticketing & Einlass</h3>
+    <div class="names">Caroline, Susanne, Sibylle, Sabine</div>
+    <div>Kartenverkauf, Verkauf Kontingente, Einlass am Event-Tag</div>
+  </div>
+  <div class="team-card">
+    <h3>Team 2 · Kasse & Finanzen</h3>
+    <div class="names">Caroline, Hildegard, Claudia, Birgitte</div>
+    <div>Kartenerlöse, Auktionseinnahmen, Abrechnungen, Spendenkonto</div>
+  </div>
+  <div class="team-card">
+    <h3>Team 3 · Programm & Musik</h3>
+    <div class="names">Anja, Claudia, Michi</div>
+    <div>Künstler:innen und Musiker:innen für Konzert, Ablauf, Regie</div>
+  </div>
+  <div class="team-card">
+    <h3>Team 4 · Location & Technik</h3>
+    <div class="names">Corinna, Sylvia, Simone</div>
+    <div>Kirche, Ton, Bestuhlung, Auf- und Abbau</div>
+  </div>
+  <div class="team-card">
+    <h3>Team 5 · PR & Einladung</h3>
+    <div class="names">Anja, Sibylle, Michi</div>
+    <div>Werbung, Presse, Gästeeinladung, Social Media</div>
+  </div>
+  <div class="team-card">
+    <h3>Team 6 · Kunst & Auktion</h3>
+    <div class="names">Michi</div>
+    <div>Exponate einwerben, Auktionatorin</div>
+  </div>
+  <div class="team-card">
+    <h3>Team 7 · Genehmigungen & GEMA</h3>
+    <div class="names">Corinna, Birgitte</div>
+    <div>Nutzungsmeldung, Nachmeldung, behördliche Meldungen</div>
+  </div>
+  <div class="team-card">
+    <h3>Team 8 · Verpflegung & Bar</h3>
+    <div class="names">Sabine, Christiane, Amra, Pucki, Hildegard, Simone, Anja B., Jaldasa <em>(Vorschlag aus 2025 — im 1. Orga-Termin final)</em></div>
+    <div>Getränke-Einkauf, Ausschank, Fingerfood, Bar-Kasse</div>
+  </div>
+</section>
+
+<section id="zeitachse">
+  <h2>3. Zeitachse & Deadlines (Rückwärtsplanung vom 24.09.2026)</h2>
+
+  <h3>Gantt-Übersicht (ab heute 20.07.2026 bis Nachbereitung Oktober)</h3>
+  <p style="font-size:.85rem;color:var(--muted);margin:.3rem 0 .6rem"><span style="display:inline-block;width:12px;height:12px;background:#c8e6c9;border-right:2px solid #4CAF50;vertical-align:middle;margin-right:4px"></span>Heute (KW 30)  &nbsp; · &nbsp; <span style="display:inline-block;width:12px;height:12px;background:#fce4ec;vertical-align:middle;margin-right:4px"></span>Event-Woche (KW 39, 24.09.)</p>
+  <div class="gantt-legend">
+    <span class="chip t1">1 · Ticketing</span>
+    <span class="chip t2">2 · Kasse</span>
+    <span class="chip t3">3 · Programm</span>
+    <span class="chip t4">4 · Location</span>
+    <span class="chip t5">5 · PR</span>
+    <span class="chip t6">6 · Auktion</span>
+    <span class="chip t7">7 · GEMA</span>
+    <span class="chip t8">8 · Verpflegung</span>
+    <span class="chip all">Alle</span>
+    <span class="chip event">Event 24.09.</span>
+  </div>
+  <div class="gantt-wrapper">
+    <div class="gantt" id="ganttGrid"></div>
+  </div>
+
+  <h3>Detaillierte Zeitachse</h3>
+  <table>
+    <thead><tr><th>Wann</th><th>Meilenstein / Aufgabe</th><th>Team</th></tr></thead>
+    <tbody>
+      <tr style="background:#fdf6e3;font-weight:600"><td>★ Mo 20.07.2026 (HEUTE)</td><td>Kick-off Orga-Meeting, Team-Zusammensetzung final</td><td>Alle</td></tr>
+      <tr><td>bis 27.07.2026</td><td>Spendenempfänger 2026 vorschlagen (Beschluss bis Ende Juli)</td><td>Team 2</td></tr>
+      <tr><td>bis 27.07.2026</td><td><span class="badge badge-kontakt">Kontakt</span>Pauluskirche (Pastor Decker)</td><td>Team 4</td></tr>
+      <tr><td>bis 27.07.2026</td><td><span class="badge badge-kontakt">Kontakt</span>Künstler:innen für Vernissage</td><td>Team 3</td></tr>
+      <tr><td>bis 27.07.2026</td><td><span class="badge badge-kontakt">Kontakt</span>Musiker:innen / Band anfragen</td><td>Team 3</td></tr>
+      <tr><td>bis 27.07.2026</td><td><span class="badge badge-kontakt">Kontakt</span>Weinlieferant (Meyerhof / Jack's Weindepot) – Angebote</td><td>Team 8</td></tr>
+      <tr><td>bis 03.08.2026</td><td><span class="badge badge-kontakt">Kontakt</span>Sponsoren-Vorjahresliste anschreiben</td><td>Team 5</td></tr>
+      <tr><td>bis 03.08.2026</td><td><span class="badge badge-kontakt">Kontakt</span>Berger, Kroll|Schäfer, Wohnlich (Zelte)</td><td>Team 4</td></tr>
+      <tr><td>bis 03.08.2026</td><td><span class="badge badge-kontakt">Kontakt</span>Bäcker, Blumen, Fingerfood-Zulieferer</td><td>Team 8</td></tr>
+      <tr><td>bis 03.08.2026</td><td>Getränke-Bedarfsplan (Wein/Bier/Wasser/Sekt) für eintägig</td><td>Team 8</td></tr>
+      <tr><td>ab 03.08.2026</td><td>Exponate für Auktion einwerben (fortlaufend)</td><td>Team 6</td></tr>
+      <tr><td>bis 17.08.2026</td><td><span class="badge badge-vertrag">Vertrag</span>Künstler:innen und Musiker:innen verbindlich buchen</td><td>Team 3</td></tr>
+      <tr><td>bis 24.08.2026</td><td><span class="badge badge-vertrag">Vertrag</span>Sponsoring-Zusagen schriftlich</td><td>Team 5</td></tr>
+      <tr><td>bis 31.08.2026</td><td><span class="badge badge-vertrag">Beauftragung</span>Beleuchtung, Kühlung, Zelte</td><td>Team 4</td></tr>
+      <tr><td>bis 31.08.2026</td><td><span class="badge badge-vertrag">Beauftragung</span>Wein, Bäcker, Blumen, Fingerfood – finale Mengen</td><td>Team 8</td></tr>
+      <tr><td>bis 24.08.2026</td><td>Layout Plakat, Programm-Postkarte, Sponsorenplakat</td><td>Team 5</td></tr>
+      <tr><td>ab 10.08.2026</td><td>Kartenvorverkauf startet</td><td>Team 1</td></tr>
+      <tr><td>bis 24.08.2026</td><td>Bewerbung Zonenveranstaltung Lions Bochum</td><td>Team 7</td></tr>
+      <tr><td>04.09.2026</td><td>Alle offenen Punkte geklärt</td><td>Alle</td></tr>
+      <tr><td>bis 10.09.</td><td>Auftragsbestätigungen prüfen</td><td>Team 4</td></tr>
+      <tr><td>10.–11.09.</td><td>Beleuchtung bei Berger abholen (~350 €)</td><td>Team 4</td></tr>
+      <tr><td>17.09.2026</td><td>GEMA-Nutzungsmeldung einreichen</td><td>Team 7</td></tr>
+      <tr><td>bis 22.09.</td><td>Einsatzplan final, Wechselgeld, Lionstaler</td><td>Team 2</td></tr>
+      <tr><td><span class="badge badge-event">Aufbau</span>Mi 23.09.</td><td>Aufbau: Zelte, Beleuchtung, Kühlung, Tische, Bühne</td><td>Team 4</td></tr>
+      <tr><td><span class="badge badge-event">Event</span>Do 24.09. vormittags</td><td>Bilder hängen (10–14 Uhr), Soundcheck, Bar-Setup, Preislisten, Wechselgeld</td><td>Team 3, 4, 6, 8</td></tr>
+      <tr><td><span class="badge badge-event">Event</span>Do 24.09. ab 18:00</td><td>Einlass mit Sektempfang</td><td>Team 1</td></tr>
+      <tr><td><span class="badge badge-event">Event</span>Do 24.09. 19:00</td><td>Begrüßung → Vernissage → Konzert → Versteigerung → Ausklang</td><td>Alle</td></tr>
+      <tr><td>Do spät / Fr 25.09. vormittags</td><td>Abbau, Rückgabe Leihmaterial</td><td>Team 4</td></tr>
+      <tr><td>bis 01.10.</td><td>GEMA-Nachmeldung</td><td>Team 7</td></tr>
+      <tr><td>Okt 2026</td><td>Rechnungen & Abrechnung, Danke, Spendenübergabe, Debriefing</td><td>Team 2 + Team 5 + Corinna</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="aufgaben">
+  <h2>4. Aufgabenliste pro Team</h2>
+
+  <div class="team-card">
+    <h3>Team 1 · Ticketing & Einlass</h3>
+    <div class="names">Caroline, Susanne, Sibylle, Sabine</div>
+    <ul>
+      <li>Kartenvorverkauf einrichten und bewerben (Konto DE23 4305 0001 0042 4203 98 + PayPal)</li>
+      <li>Ticketpreise 2026 finalisieren (Vorschlag: VVK 20 € / AK 25 €)</li>
+      <li>Kontingente für Sponsoren, Zone Lions, Rotary etc. definieren und ausgeben</li>
+      <li>VIP-Bändchen VOR dem Event an Sponsoren verteilen (Lessons Learned 2025)</li>
+      <li>TN-Liste aktualisieren, für Do 24.09. ausdrucken</li>
+      <li>Am Event-Tag: Empfang, Einlass, Sektempfang, Garderobe koordinieren</li>
+    </ul>
+  </div>
+
+  <div class="team-card">
+    <h3>Team 2 · Kasse & Finanzen</h3>
+    <div class="names">Caroline, Hildegard, Claudia, Birgitte</div>
+    <ul>
+      <li>Spendenempfänger 2026 vorschlagen und mit Vorstand abstimmen (Beschluss bis Ende Juli)</li>
+      <li>Spendenkonto Lions Allegra Förderverein e.V. verwalten (Birgitte)</li>
+      <li>PayPal-Vorverkauf aufsetzen</li>
+      <li>Wechselgeld packen, Lionstaler-Säckchen vorbereiten (10er-Beutel)</li>
+      <li>Abendkasse besetzen und dokumentieren</li>
+      <li>Auktionseinnahmen erfassen und abrechnen</li>
+      <li>Spendenquittungen vorbereiten und ausgeben</li>
+      <li>Nach Event: Rechnungen prüfen und bezahlen, Gesamtabrechnung, Spendenübergabe</li>
+    </ul>
+  </div>
+
+  <div class="team-card">
+    <h3>Team 3 · Programm & Musik</h3>
+    <div class="names">Anja, Claudia, Michi</div>
+    <ul>
+      <li>Künstler:innen für Vernissage anfragen und schriftlich buchen (Honorar, Rider)</li>
+      <li>Musiker:innen / Band für Konzert anfragen und schriftlich buchen</li>
+      <li>Ablauf-Regie Do 24.09. (Begrüßung → Vernissage → Konzert → Versteigerung → Ausklang)</li>
+      <li>Soundcheck vormittags koordinieren</li>
+      <li>Präsente für Musiker:innen vorbereiten (2025: 80 €)</li>
+      <li>Setlist für GEMA-Nachmeldung festhalten</li>
+    </ul>
+  </div>
+
+  <div class="team-card">
+    <h3>Team 4 · Location & Technik</h3>
+    <div class="names">Corinna, Sylvia, Simone</div>
+    <ul>
+      <li>Termin, Räume und Schlüssel mit Pauluskirche (Pastor Decker) bestätigen</li>
+      <li>Beleuchtung bei Berger anfragen und am 10./11.09. abholen (ca. 350 €)</li>
+      <li>Bestuhlung planen (lockere Anordnung, mehr Stehtische)</li>
+      <li>Ton/Technik mit Musiker:innen abstimmen</li>
+      <li>Kroll|Schäfer (Kühlung, Stehtische, Wasser, Bier) beauftragen</li>
+      <li>Wohnlich (Zelte 2× 3×3 m) beauftragen</li>
+      <li>Mi 23.09. — Aufbau vor Ort leiten</li>
+      <li>Do 24.09. spät / Fr 25.09. vormittags — Abbau und Rückgabe Leihmaterial</li>
+      <li>LEO-Koordination sicherstellen (Sylvia bewährt aus 2025)</li>
+    </ul>
+  </div>
+
+  <div class="team-card">
+    <h3>Team 5 · PR & Einladung</h3>
+    <div class="names">Anja, Sibylle, Michi</div>
+    <ul>
+      <li>Layout Plakat, Programm-Postkarte, Sponsorenplakat (Neuauflage aus 2025)</li>
+      <li>Verteiler pflegen: Zone Lions, Rotary, Frauen-Service-Clubs, Ärzteliste, Volksbank, Commerzbank u.a.</li>
+      <li>Einladungen versenden (Lionscluballegra@gmail.com)</li>
+      <li>Instagram-Content vor, während und nach dem Event (Sibylle)</li>
+      <li>Presseansprache: lokale Zeitung, Radio, Zone-Newsletter</li>
+      <li>Fotoerlaubnis-Hinweis kommunizieren (Kontakt: katrin.lukowsky@gmx.de)</li>
+      <li>Nach Event: Danke-Grafik aktualisieren und an Sponsoren, Pressenachbericht</li>
+    </ul>
+  </div>
+
+  <div class="team-card">
+    <h3>Team 6 · Kunst & Auktion</h3>
+    <div class="names">Michi</div>
+    <ul>
+      <li>Exponate einwerben (Kunstwerke, Sachpreise, Erlebnisse für Versteigerung)</li>
+      <li>Preisideen, Startgebote und Mindestpreise mit Team 2 abstimmen</li>
+      <li>Probehängen mit Team 4 koordinieren</li>
+      <li>Auktion moderieren am Event-Abend</li>
+      <li>Käufer:innen dokumentieren und an Team 2 (Kasse) übergeben</li>
+    </ul>
+  </div>
+
+  <div class="team-card">
+    <h3>Team 7 · Genehmigungen & GEMA</h3>
+    <div class="names">Corinna, Birgitte</div>
+    <ul>
+      <li>GEMA-Nutzungsmeldung am 17.09.2026 einreichen (20 % Vereinsrabatt)</li>
+      <li>GEMA-Nachmeldung binnen 7 Tagen (bis 01.10.)</li>
+      <li>Weitere behördliche Meldungen (falls erforderlich)</li>
+      <li>Bewerbung Zonenveranstaltung Lions Bochum</li>
+      <li>Wochenreport an Orga-Team ab August</li>
+    </ul>
+  </div>
+
+  <div class="team-card">
+    <h3>Team 8 · Verpflegung & Bar</h3>
+    <div class="names">Sabine, Christiane, Amra, Pucki, Hildegard, Simone, Anja B., Jaldasa <em>(Vorschlag aus 2025)</em></div>
+    <ul>
+      <li>Getränke-Großbestellung koordinieren (Wein, Bier, Wasser, Sekt für Empfang)</li>
+      <li>Bar-Setup: Ausschank Kirche + Zelt, Preislisten, Wechselgeld</li>
+      <li>Spülkiste organisieren (2025: 450,20 €)</li>
+      <li>Gläser mindestens 300 organisieren (eintägig)</li>
+      <li>Fingerfood-Vorbereitung und -Ausgabe (Sandwiches, Frikadellen, Brezel, Empanadas)</li>
+      <li>Reinigungsmaterial (Putzmittel, TP, Küchenrolle) checken – Club-Bestandsliste anlegen</li>
+      <li>Schichtplan Bar Do 24.09. abends erstellen</li>
+      <li>Am Event-Tag: Ausschank, Nachschub, Bar-Kasse an Team 2 abgeben</li>
+    </ul>
+  </div>
+
+  <div class="team-card">
+    <h3>Noch zu besetzen (im 1. Orga-Termin)</h3>
+    <ul>
+      <li>Sponsoring-Akquise (Zusagen aus 2025 als Basis)</li>
+      <li>LEO-Koordination (Sylvia bewährt aus 2025)</li>
+    </ul>
+  </div>
+</section>
+
+<section id="budget">
+  <h2>5. Budget-Rahmen (Ist 2025 als Basis, für eintägig ggf. reduzieren)</h2>
+  <table>
+    <thead><tr><th>Position</th><th>Betrag (€)</th><th>Team</th></tr></thead>
+    <tbody>
+      <tr><td colspan="3" style="background:#f0ebd8;font-weight:600">AUSGABEN</td></tr>
+      <tr><td>Spülkiste</td><td>450,20</td><td>Team 4</td></tr>
+      <tr><td>Weißwein Meyerhof</td><td>120,97</td><td>Team 4</td></tr>
+      <tr><td>Rotwein</td><td>127,45</td><td>Team 4</td></tr>
+      <tr><td>Brezel Schmidtmeier</td><td>218,87</td><td>Team 4 / Team 5</td></tr>
+      <tr><td>Band-Präsente</td><td>80,00</td><td>Team 3</td></tr>
+      <tr><td>Beleuchtung Berger</td><td>350,00</td><td>Team 4</td></tr>
+      <tr><td>GEMA (1× 92,17 eintägig)</td><td>~92,17</td><td>Team 7</td></tr>
+      <tr><td>Puffer 15 %</td><td>~215,00</td><td>–</td></tr>
+      <tr><td><strong>Ausgaben ca.</strong></td><td><strong>~1.650</strong></td><td></td></tr>
+      <tr><td colspan="3" style="background:#f0ebd8;font-weight:600">EINNAHMEN (Schätzung eintägig)</td></tr>
+      <tr><td>Eintritt Konto + PayPal + AK</td><td>~2.500</td><td>Team 1 / Team 2</td></tr>
+      <tr><td>Bilderverkauf</td><td>~2.500</td><td>Team 6</td></tr>
+      <tr><td>Talerverkauf</td><td>~1.200</td><td>Team 2</td></tr>
+      <tr><td>Spenden</td><td>~1.200</td><td>Team 2</td></tr>
+      <tr><td>Fotografie-Ausstellung</td><td>~800</td><td>Team 6</td></tr>
+      <tr><td><strong>Einnahmen ca.</strong></td><td><strong>~8.200</strong></td><td></td></tr>
+      <tr><td colspan="2" style="background:#e6f0e0;font-weight:600">ERWARTETES ERGEBNIS SPENDE</td><td style="background:#e6f0e0;font-weight:600">~6.500 €</td></tr>
+    </tbody>
+  </table>
+  <h3>Eintrittspreise 2026 (Vorschlag)</h3>
+  <ul>
+    <li>VVK 20 € / Abendkasse 25 €</li>
+    <li>1 € = 1 Lionstaler</li>
+  </ul>
+</section>
+
+<section id="programm">
+  <h2>6. Programm & Themen</h2>
+  <h3>Vorschlag Ablauf Do 24.09.2026 (Zeiten indikativ)</h3>
+  <ul>
+    <li>18:00–19:00 – Einlass mit Sektempfang</li>
+    <li>19:00–19:20 – Begrüßung Präsidentin + Vorstellung Spendenempfänger 2026</li>
+    <li>19:20–20:00 – Vernissage (Künstler:innen vorstellen, Verkauf startet)</li>
+    <li>20:00–21:00 – Konzert (Nachfolge "Second Choice" oder neu)</li>
+    <li>21:00–21:30 – Versteigerung (Michi)</li>
+    <li>21:30–ca. 23:00 – Ausklang mit Musik, Wein, Fingerfood</li>
+  </ul>
+  <h3>Blaupause aus 2024/2025 (zum Vergleich)</h3>
+  <ul>
+    <li>Fr 19–22 h: Band "Second Choice" + Vernissage Leonhardt/Banz + Versteigerung</li>
+    <li>Sa-Matinee "Barline" – 2026 entfällt (eintägig)</li>
+  </ul>
+  <h3>Ideen / Optionen 2026</h3>
+  <ul>
+    <li>"Gin for Charity" mit Pinnchen-Verkostung als Zusatz-Einnahmequelle</li>
+    <li>Kleinkunst-Element in den Abend-Slot einbauen</li>
+    <li>Themen-Sammlung 2025 als Ideen-Pool weiterführen</li>
+  </ul>
+</section>
+
+<section id="catering">
+  <h2>7. Catering & Preisliste — Entscheidung 2026</h2>
+  <p><em>Basis: Angebot aus 2024 und 2025. In der Spalte "Entscheidung 2026" pro Produkt festlegen.</em></p>
+
+  <div class="send-callout">
+    <div class="text">
+      <strong>⚠️ Wichtig: Deine Klicks bleiben nur bei dir im Browser!</strong>
+      <span>Wenn du mit dem Ausfüllen fertig bist, klick unbedingt auf <strong>"Entscheidungen an Corinna senden"</strong> — sonst kommen deine Entscheidungen nicht bei mir an.</span>
+    </div>
+    <button class="big-mail-btn" onclick="mailCatering()">📧 Entscheidungen an Corinna senden</button>
+  </div>
+
+  <div class="actions">
+    <button class="secondary" onclick="exportCatering()">Als Text kopieren</button>
+    <button class="danger" onclick="resetCatering()">Zurücksetzen</button>
+  </div>
+  <table id="cateringTable">
+    <thead>
+      <tr>
+        <th style="width:26%">Produkt</th>
+        <th style="width:22%">Preis/Menge 2024/2025</th>
+        <th style="width:12%">War Bestand</th>
+        <th style="width:40%">Entscheidung 2026</th>
+      </tr>
+    </thead>
+    <tbody id="cateringBody"></tbody>
+  </table>
+</section>
+
+<section id="partner">
+  <h2>8. Dienstleister & Partner</h2>
+  <table>
+    <thead><tr><th>Partner</th><th>Kontakt</th><th>Leistung</th></tr></thead>
+    <tbody>
+      <tr><td>Pauluskirche</td><td>Pastor Decker, Hausmeisterin</td><td>Termin, Schlüssel Mi–Fr</td></tr>
+      <tr><td>Meyerhof GmbH</td><td>Westring 33, Bochum · 0234-961210</td><td>Wein (2025: 30 Fl. Grauburgunder gespendet + 267,90 €)</td></tr>
+      <tr><td>Berger</td><td>–</td><td>Beleuchtung 26 Lampen, ca. 350 €</td></tr>
+      <tr><td>Kroll | Schäfer / Eventmanufaktur</td><td>Ralf Schäfer</td><td>Kühlung, Stehtische + Hussen, Wasser, Bier</td></tr>
+      <tr><td>Stefan Wohnlich</td><td>–</td><td>Zelte 2× 3×3 m</td></tr>
+      <tr><td>Schmidtmeier / Drees</td><td>–</td><td>Brezel, Kniften</td></tr>
+      <tr><td>Alfred / Axel Klodt</td><td>–</td><td>Blumen</td></tr>
+      <tr><td>Menschenskinder e.V.</td><td>Hildegard als Kontakt</td><td>Spendenempfänger 2025 – 2026 zu bestätigen</td></tr>
+      <tr><td>GEMA</td><td>–</td><td>~92 € eintägig (20 % Vereinsrabatt)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="kommunikation">
+  <h2>9. Kommunikation & Vorlagen</h2>
+  <h3>Vorlagen aus 2025</h3>
+  <ul>
+    <li>"Liebe Freunde von KuK" – Anschreiben (Lionscluballegra@gmail.com)</li>
+    <li>DANKE.docm – Sponsoren-Danke-Grafik</li>
+    <li>Fotoerlaubnis-Hinweis (Kontakt: katrin.lukowsky@gmx.de)</li>
+  </ul>
+  <h3>Verteiler Einladungen</h3>
+  <ul>
+    <li>Zone Lions, Rotary, Frauen-Service-Clubs, Rebecca Hanf, Bettina Gosen, A. Klodt</li>
+    <li>Ärzteliste: Diessner, Leonhardt, Post, Budkereit, Fork, Bruckhaus Walter, Lukowski, Grönemeier/Becker</li>
+    <li>Silke Jordan, Marketing Volksbank, Commerzbank</li>
+  </ul>
+  <h3>Spendenkonto</h3>
+  <p>Lions Allegra Förderverein e.V. – <strong>DE23 4305 0001 0042 4203 98</strong></p>
+</section>
+
+<section id="lessons">
+  <h2>10. Lessons Learned aus 2024/2025</h2>
+  <ul>
+    <li>Presse: Wifö/klassische Medien zurückhaltend – 2026 Fokus auf Instagram, Zonen-Netzwerk, lokale Zeitung</li>
+    <li>Lockere Bestuhlung mit mehr Stehtischen</li>
+    <li>Gläserbedarf: 2024 = 300, 2025 (2 Tage) = 400+, 2026 eintägig min. 300</li>
+    <li>VIP-Bändchen für Sponsoren VOR dem Event ausgeben</li>
+    <li>Jack's Weindepot via Amra 2026 verbindlich klären</li>
+    <li>Meyerhof-Weißwein "auf Kommission" – Prozess klären</li>
+    <li>Reinigungsmaterial – Club-Bestandsliste anlegen</li>
+    <li>Debriefing-Protokoll direkt nach Event einführen</li>
+  </ul>
+</section>
+
+<section id="checkliste">
+  <h2>11. Interaktive Checkliste</h2>
+  <p><em>Klick auf ein Feld hakt es ab. Der Stand wird in deinem Browser gespeichert.</em></p>
+  <div class="actions">
+    <button class="secondary" onclick="window.print()">Drucken</button>
+    <button class="danger" onclick="resetAll()">Alle Häkchen zurücksetzen</button>
+  </div>
+  <div class="checklist" id="checklist"></div>
+</section>
+
+<section id="kommentare">
+  <h2>12. Kommentare & Fragen</h2>
+
+  <div class="send-callout">
+    <div class="text">
+      <strong>⚠️ Wichtig: Deine Kommentare bleiben nur bei dir im Browser!</strong>
+      <span>Wenn du Fragen oder Anmerkungen eingetragen hast, klick unbedingt auf <strong>"Kommentare an Corinna senden"</strong> — sonst sehe ich sie nicht.</span>
+    </div>
+    <button class="big-mail-btn" onclick="sendByMail()">📧 Kommentare an Corinna senden</button>
+  </div>
+
+  <div class="comment-form">
+    <div class="row">
+      <input type="text" id="cName" placeholder="Dein Name" autocomplete="name">
+      <input type="text" id="cContext" placeholder='Bezug (z.B. "Sponsoring", "Programm", "Budget") – optional'>
+      <select id="cType">
+        <option value="comment">Kommentar</option>
+        <option value="question">Frage</option>
+      </select>
+    </div>
+    <textarea id="cBody" placeholder="Deine Frage oder dein Kommentar…"></textarea>
+    <div class="actions">
+      <button onclick="addComment()">Hinzufügen</button>
+      <button class="secondary" onclick="exportComments()">Als Text kopieren</button>
+      <button class="danger" onclick="clearComments()">Alle Kommentare löschen</button>
+    </div>
+  </div>
+
+  <div class="comments-list" id="commentsList"></div>
+</section>
+
+<footer>
+  Kunst und Kirche 2026 · Lions Club Bochum Allegra · Eintägig am 24.09.2026 · Stand: Juli 2026
+</footer>
+
+</main>
+
+</div><!-- /#protectedContent -->
+
+<script>
+// ========== Passwort-Schutz ==========
+// SHA-256 Hash von "Allegra2026". Für casual protection - nicht wirklich sicher.
+const PW_HASH = "db73912ac2c18fc324aefaeacab21760d36e8e26d789634920007745c83fa564";
+const PW_UNLOCK_KEY = "kuk2026_unlocked_v1";
+
+async function sha256(text) {
+  const buf = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest("SHA-256", buf);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function checkPassword(evt) {
+  if (evt) evt.preventDefault();
+  const input = document.getElementById("pwInput").value;
+  const errorEl = document.getElementById("pwError");
+  const hash = await sha256(input);
+  if (hash === PW_HASH) {
+    try { localStorage.setItem(PW_UNLOCK_KEY, "1"); } catch(e) {}
+    unlockPage();
+  } else {
+    errorEl.textContent = "Falsches Passwort. Bitte nochmal versuchen.";
+    document.getElementById("pwInput").value = "";
+  }
+  return false;
+}
+
+function unlockPage() {
+  document.getElementById("pwOverlay").style.display = "none";
+  document.getElementById("protectedContent").style.display = "block";
+  // Alle init-Funktionen aufrufen, jetzt wo Content sichtbar ist
+  try {
+    renderGantt();
+    renderChecks();
+    renderCatering();
+    renderComments();
+    const lastName = localStorage.getItem(NAME_KEY);
+    if (lastName) document.getElementById("cName").value = lastName;
+  } catch(e) { console.error(e); }
+}
+
+// Beim Laden prüfen, ob schon freigeschaltet
+try {
+  if (localStorage.getItem(PW_UNLOCK_KEY) === "1") {
+    // Warten bis DOM geladen, dann freischalten
+    document.addEventListener("DOMContentLoaded", unlockPage);
+    // Falls DOM schon geladen
+    if (document.readyState !== "loading") setTimeout(unlockPage, 0);
+  }
+} catch(e) {}
+</script>
+
+<script>
+// ========== Checkliste ==========
+const phases = [
+  {
+    title: "Phase 1 · Juli 2026 — Kick-off & Erstkontakte",
+    items: [
+      "Kick-off Orga-Meeting terminiert und durchgeführt (Team 4 / Corinna)",
+      "Alle 8 Teams bestätigt und Kontaktdaten ausgetauscht",
+      "Team 2: Spendenempfänger 2026 vorgeschlagen und mit Vorstand beschlossen",
+      "Team 4: Pauluskirche (Pastor Decker) — Termin/Räume/Schlüssel bestätigt",
+      "Team 3: Künstler:innen für Vernissage angefragt",
+      "Team 3: Musiker:innen / Band angefragt",
+      "Team 5: Sponsoren-Vorjahresliste (Erstansprache) angeschrieben",
+      "Team 8: Wein-Angebote eingeholt (Meyerhof / Jack's Weindepot)",
+    ],
+  },
+  {
+    title: "Phase 2 · August 2026 — Dienstleister & Verträge",
+    items: [
+      "Team 4: Berger (Beleuchtung, 26 Lampen) angefragt",
+      "Team 4: Kroll|Schäfer (Kühlung, Bier, Wasser, Stehtische) angefragt",
+      "Team 4: Stefan Wohnlich (Zelte 2× 3×3 m) angefragt",
+      "Team 8: Bäcker Schmidtmeier & Drees angefragt",
+      "Team 8: Blumen Alfred / Axel Klodt angefragt",
+      "Team 8: Getränke-Bedarfsplan Wein/Bier/Wasser/Sekt erstellt",
+      "Team 6: Exponate-Einwerbung gestartet",
+      "Team 3: Künstler:innen und Musiker:innen schriftlich gebucht (Zusage, Honorar, Rider)",
+      "Team 5: Sponsoring-Zusagen schriftlich",
+      "Team 4: Beleuchtung, Kühlung, Zelte final beauftragt",
+      "Team 8: Wein, Bäcker, Blumen, Fingerfood — finale Stückzahlen bestellt",
+      "Team 5: Layout Plakat & Programm-Postkarte finalisiert",
+      "Team 1: Kartenvorverkauf gestartet",
+      "Team 7: Bewerbung Zonenveranstaltung Lions Bochum eingereicht",
+    ],
+  },
+  {
+    title: "Phase 3 · September 2026 — Finalisierung",
+    items: [
+      "Alle offenen Punkte bis 04.09. geklärt",
+      "Team 4: Auftragsbestätigungen bis 10.09. geprüft",
+      "Team 4: Beleuchtung bei Berger am 10./11.09. abgeholt",
+      "Team 7: GEMA-Nutzungsmeldung am 17.09. eingereicht",
+      "Team 2: Einsatzplan bis 22.09. final",
+      "Team 2: Wechselgeld gepackt",
+      "Team 2: Lionstaler-Säckchen fertig (10er-Beutel)",
+      "Team 8: Gläser min. 300 organisiert",
+      "Team 8: Reinigungsmaterial (Putzmittel, TP, Küchenrolle) gecheckt",
+      "Team 8: Bar-Schichtplan Do 24.09. abends steht",
+      "Team 1: VIP-Bändchen VOR dem Event verteilt",
+      "Team 4: Lieferungen für Mi 23.09. final bestätigt",
+      "Team 1/2: Kartenverkauf-Status geprüft",
+      "Team 1: TN-Liste gedruckt",
+      "Team 2: Spendenquittungen vorbereitet",
+      "Team 3: Ablauf Do 24.09. an alle kommuniziert",
+    ],
+  },
+  {
+    title: "Phase 4 · Aufbau & Event-Tag",
+    items: [
+      "Team 4: Mi 23.09. ab 10:00 — Aufbau: Zelte, Beleuchtung, Kühlung, Tische, Bühne",
+      "Team 3/4/6: Do 24.09. 10–14 Uhr — Bilder gehängt",
+      "Team 3: Do 24.09. vormittags — Soundcheck durchgeführt",
+      "Team 2: Do 24.09. vormittags — Wechselgeld verteilt, Preislisten ausgelegt",
+      "Team 1: Do 24.09. ab 18:00 — Einlass mit Sektempfang",
+      "Do 24.09. 19:00 — Begrüßung",
+      "Team 3: Vernissage",
+      "Team 3: Konzert",
+      "Team 6: Versteigerung",
+      "Ausklang",
+      "Team 4: Do 24.09. spät / Fr 25.09. vormittags — Abbau + Rückgabe Leihmaterial",
+      "Team 3: Setlist der Band festgehalten (für GEMA-Nachmeldung)",
+      "Team 1/2: Besucherzahl dokumentiert",
+    ],
+  },
+  {
+    title: "Phase 5 · Nachbereitung (Oktober 2026)",
+    items: [
+      "Team 7: GEMA-Nachmeldung bis 01.10. eingereicht",
+      "Team 2: Rechnungen geprüft und bezahlt",
+      "Team 5: Danke-Grafik aktualisiert und an Sponsoren verschickt",
+      "Team 3/5: Danke-Mails an Künstler:innen und Band",
+      "Team 2: Spendenübergabe an Empfänger 2026 organisiert",
+      "Team 5: Presse-Nachbericht (Insta, Zone, Zeitung)",
+      "Debriefing-Meeting Orga-Team durchgeführt",
+      "Debriefing-Protokoll erstellt und im KuK-Ordner abgelegt",
+      "Team 5: Sponsoren-Liste 2026 für Folgejahr aktualisiert",
+    ],
+  },
+];
+
+const CHECK_KEY = "kuk2026_checkstate_v3";
+let checkState = {};
+try { checkState = JSON.parse(localStorage.getItem(CHECK_KEY) || "{}"); } catch(e) { checkState = {}; }
+function saveChecks() { try { localStorage.setItem(CHECK_KEY, JSON.stringify(checkState)); } catch(e) {} }
+
+function renderChecks() {
+  const root = document.getElementById("checklist");
+  root.innerHTML = "";
+  let total = 0, done = 0;
+  phases.forEach((phase, pi) => {
+    const phaseDone = phase.items.filter((_, i) => checkState[pi + "_" + i]).length;
+    total += phase.items.length;
+    done += phaseDone;
+    const div = document.createElement("div");
+    div.className = "phase";
+    div.innerHTML = `<div class="phase-title"><span>${phase.title}</span><span class="counter">${phaseDone} / ${phase.items.length}</span></div>`;
+    const items = document.createElement("div");
+    items.className = "phase-items";
+    phase.items.forEach((text, i) => {
+      const key = pi + "_" + i;
+      const checked = !!checkState[key];
+      const row = document.createElement("div");
+      row.className = "check-item" + (checked ? " done" : "");
+      const id = "cb_" + key;
+      row.innerHTML = `<input type="checkbox" id="${id}" ${checked ? "checked" : ""}><label for="${id}"></label>`;
+      row.querySelector("label").textContent = text;
+      row.querySelector("input").addEventListener("change", (e) => {
+        checkState[key] = e.target.checked;
+        saveChecks();
+        renderChecks();
+      });
+      items.appendChild(row);
+    });
+    div.appendChild(items);
+    root.appendChild(div);
+  });
+  document.getElementById("progCount").textContent = done + " / " + total;
+  document.getElementById("progFill").style.width = (total ? (done / total * 100) : 0).toFixed(1) + "%";
+}
+
+function resetAll() {
+  if (!confirm("Wirklich alle Häkchen zurücksetzen?")) return;
+  checkState = {};
+  saveChecks();
+  renderChecks();
+}
+
+// ========== Catering-Entscheidungen ==========
+const cateringItems = [
+  { name: "Empanadas Rind / Huhn / vegetarisch", price: "3,00 € / 3 LT je Stück", bestand: "2024, 2025" },
+  { name: "Weißwein Custoza / Rosé Chiaretto Bardolino", price: "0,2 l = 5 € / Fl. 18 €", bestand: "2024, 2025" },
+  { name: "Rotwein Baltazar Malbec", price: "0,2 l = 6 € / Fl. 21 €", bestand: "2024, 2025" },
+  { name: "Wasser Herzog Life 0,25 l", price: "3 €", bestand: "2024, 2025" },
+  { name: "Fiege Bier", price: "je Flasche (Preis 2026 festlegen)", bestand: "2024, 2025" },
+  { name: "Sekt / Prosecco für Empfang", price: "je Glas (neu 2026)", bestand: "neu 2026" },
+  { name: "Sandwiches", price: "~130 Stück (2025 Fr-Abend)", bestand: "2024, 2025" },
+  { name: "Frikadellen", price: "~100 Stück (2025 Fr-Abend)", bestand: "2024, 2025" },
+  { name: "Brezel (Schmidtmeier)", price: "~ 218,87 € 2025", bestand: "2024, 2025" },
+  { name: "Kniften (Drees)", price: "wie 2025", bestand: "2024, 2025" },
+  { name: "Stadionwurst vom Grill", price: "war 2025 Samstag-Format", bestand: "2024, 2025" },
+  { name: "Gin for Charity (Pinnchen)", price: "Preis 2026 festlegen", bestand: "Idee 2026" },
+];
+
+const CAT_KEY = "kuk2026_catering_v1";
+let catState = {};
+try { catState = JSON.parse(localStorage.getItem(CAT_KEY) || "{}"); } catch(e) { catState = {}; }
+function saveCat() { try { localStorage.setItem(CAT_KEY, JSON.stringify(catState)); } catch(e) {} }
+
+function renderCatering() {
+  const body = document.getElementById("cateringBody");
+  body.innerHTML = "";
+  cateringItems.forEach((it, i) => {
+    const s = catState[i] || {};
+    const dec = s.decision || "";
+    const note = s.note || "";
+    const clsMap = { yes: "dec-yes", no: "dec-no", other: "dec-other" };
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${escapeHtml(it.name)}</td>
+      <td>${escapeHtml(it.price)}</td>
+      <td>${escapeHtml(it.bestand)}</td>
+      <td class="decision-cell ${clsMap[dec] || ""}">
+        <label><input type="radio" name="dec_${i}" value="yes" ${dec === "yes" ? "checked" : ""}> übernehmen</label>
+        <label><input type="radio" name="dec_${i}" value="no" ${dec === "no" ? "checked" : ""}> streichen</label>
+        <label><input type="radio" name="dec_${i}" value="other" ${dec === "other" ? "checked" : ""}> anders/anpassen</label>
+        <span class="note"><input type="text" placeholder="Anmerkung / neuer Preis / Menge…" value="${escapeHtml(note)}" data-idx="${i}" class="cat-note"></span>
+      </td>
+    `;
+    tr.querySelectorAll(`input[name="dec_${i}"]`).forEach(r => {
+      r.addEventListener("change", (e) => {
+        if (!catState[i]) catState[i] = {};
+        catState[i].decision = e.target.value;
+        saveCat();
+        renderCatering();
+      });
+    });
+    tr.querySelector(".cat-note").addEventListener("input", (e) => {
+      if (!catState[i]) catState[i] = {};
+      catState[i].note = e.target.value;
+      saveCat();
+    });
+    body.appendChild(tr);
+  });
+}
+
+function buildCateringText() {
+  const lines = ["Catering-Entscheidungen 2026 (Stand " + new Date().toLocaleDateString("de-DE") + "):", ""];
+  cateringItems.forEach((it, i) => {
+    const s = catState[i] || {};
+    const decMap = { yes: "ÜBERNEHMEN", no: "STREICHEN", other: "ANDERS/ANPASSEN" };
+    const dec = decMap[s.decision] || "OFFEN";
+    const note = s.note ? "  → " + s.note : "";
+    lines.push(`- ${it.name} (${it.price}) [${it.bestand}]: ${dec}${note}`);
+  });
+  return lines.join("\n");
+}
+
+function exportCatering() {
+  const text = buildCateringText();
+  navigator.clipboard.writeText(text).then(
+    () => alert("Entscheidungen in die Zwischenablage kopiert."),
+    () => {
+      const w = window.open("", "_blank");
+      w.document.write("<pre style='font-family:sans-serif;padding:20px'>" + escapeHtml(text) + "</pre>");
+    }
+  );
+}
+
+function mailCatering() {
+  const subject = encodeURIComponent("KuK 2026 – Catering-Entscheidungen");
+  const body = encodeURIComponent("Hallo Corinna,\n\nhier meine Catering-Entscheidungen für KuK 2026:\n\n" + buildCateringText() + "\n\nViele Grüße");
+  window.location.href = `mailto:team.anthropic@snap-gmbh.com?subject=${subject}&body=${body}`;
+}
+
+function resetCatering() {
+  if (!confirm("Wirklich alle Catering-Entscheidungen zurücksetzen?")) return;
+  catState = {};
+  saveCat();
+  renderCatering();
+}
+
+// ========== Kommentare ==========
+const COMMENTS_KEY = "kuk2026_comments_v1";
+const NAME_KEY = "kuk2026_lastname_v1";
+let comments = [];
+try { comments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || "[]"); } catch(e) { comments = []; }
+function saveComments() { try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments)); } catch(e) {} }
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  return d.toLocaleString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+}
+
+function renderComments() {
+  const list = document.getElementById("commentsList");
+  list.innerHTML = "";
+  if (comments.length === 0) {
+    list.innerHTML = '<div class="empty">Noch keine Kommentare. Sei die erste Person!</div>';
+    return;
+  }
+  const sorted = [...comments].sort((a, b) => new Date(b.date) - new Date(a.date));
+  sorted.forEach((c) => {
+    const div = document.createElement("div");
+    div.className = "comment " + (c.type === "question" ? "question" : "comment-type") + (c.answered ? " answered" : "");
+    const tagClass = c.type === "question" ? "tag-question" : "tag-comment";
+    const tagLabel = c.type === "question" ? "FRAGE" : "KOMMENTAR";
+    const contextSpan = c.context ? `<span class="tag tag-context">${escapeHtml(c.context)}</span>` : "";
+    div.innerHTML = `
+      <div class="head">
+        <div>
+          <span class="who">${escapeHtml(c.name || "Anonym")}</span>
+          <span class="tag ${tagClass}">${tagLabel}</span>
+          ${contextSpan}
+        </div>
+        <span class="when">${formatDate(c.date)}</span>
+      </div>
+      <div class="body"></div>
+      <div class="actions-inline">
+        ${c.type === "question" ? `<button class="secondary" data-id="${c.id}" data-action="toggle">${c.answered ? "Wieder offen" : "Als beantwortet markieren"}</button>` : ""}
+        <button class="danger" data-id="${c.id}" data-action="delete">Löschen</button>
+      </div>
+    `;
+    div.querySelector(".body").textContent = c.body;
+    div.querySelectorAll("button").forEach(b => {
+      b.addEventListener("click", () => {
+        const id = b.getAttribute("data-id");
+        const action = b.getAttribute("data-action");
+        if (action === "delete") {
+          if (confirm("Kommentar löschen?")) {
+            comments = comments.filter(x => x.id !== id);
+            saveComments(); renderComments();
+          }
+        } else if (action === "toggle") {
+          const c2 = comments.find(x => x.id === id);
+          if (c2) { c2.answered = !c2.answered; saveComments(); renderComments(); }
+        }
+      });
+    });
+    list.appendChild(div);
+  });
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, m => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[m]));
+}
+
+function addComment() {
+  const name = document.getElementById("cName").value.trim();
+  const context = document.getElementById("cContext").value.trim();
+  const type = document.getElementById("cType").value;
+  const body = document.getElementById("cBody").value.trim();
+  if (!body) { alert("Bitte einen Text eingeben."); return; }
+  if (!name) { alert("Bitte deinen Namen eingeben."); return; }
+  const c = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name, context, type, body, date: new Date().toISOString(), answered: false };
+  comments.push(c);
+  saveComments();
+  try { localStorage.setItem(NAME_KEY, name); } catch(e) {}
+  document.getElementById("cBody").value = "";
+  document.getElementById("cContext").value = "";
+  renderComments();
+}
+
+function buildCommentsText() {
+  if (comments.length === 0) return "Noch keine Kommentare vorhanden.";
+  const sorted = [...comments].sort((a, b) => new Date(a.date) - new Date(b.date));
+  return sorted.map(c => {
+    const type = c.type === "question" ? "[FRAGE]" : "[KOMMENTAR]";
+    const ctx = c.context ? ` (${c.context})` : "";
+    const status = c.answered ? " [BEANTWORTET]" : "";
+    return `${type}${ctx}${status}\nVon: ${c.name}  ·  ${formatDate(c.date)}\n${c.body}\n`;
+  }).join("\n---\n\n");
+}
+
+function sendByMail() {
+  const subject = encodeURIComponent("Kunst und Kirche 2026 – Kommentare & Fragen");
+  const body = encodeURIComponent("Hallo Corinna,\n\nhier meine Anmerkungen und Fragen zur KuK 2026:\n\n" + buildCommentsText() + "\n\nViele Grüße");
+  window.location.href = `mailto:team.anthropic@snap-gmbh.com?subject=${subject}&body=${body}`;
+}
+
+function exportComments() {
+  navigator.clipboard.writeText(buildCommentsText()).then(
+    () => alert("Kommentare wurden in die Zwischenablage kopiert."),
+    () => {
+      const w = window.open("", "_blank");
+      w.document.write("<pre style='font-family:sans-serif;padding:20px'>" + escapeHtml(buildCommentsText()) + "</pre>");
+    }
+  );
+}
+
+function clearComments() {
+  if (!confirm("Wirklich ALLE Kommentare löschen?")) return;
+  comments = []; saveComments(); renderComments();
+}
+
+// ========== Gantt ==========
+// 14 Wochen: KW 30 (heute, 20.07.) bis KW 43 (Mitte Oktober)
+const ganttTasks = [
+  { label: "★ Kick-off Orga-Meeting (HEUTE)", team: "event", start: 1, span: 1 },
+  { label: "Spendenempfänger 2026 beschließen", team: "t2", start: 1, span: 2 },
+  { label: "Kontakt Pauluskirche (Pastor Decker)", team: "t4", start: 1, span: 2 },
+  { label: "Kontakt Künstler:innen für Vernissage", team: "t3", start: 1, span: 2 },
+  { label: "Kontakt Musiker:innen / Band", team: "t3", start: 1, span: 2 },
+  { label: "Wein-Angebote (Meyerhof, Jack's Weindepot)", team: "t8", start: 1, span: 2 },
+  { label: "Sponsoren-Erstansprache", team: "t5", start: 1, span: 3 },
+  { label: "Kontakt Berger, Kroll|Schäfer, Wohnlich", team: "t4", start: 3, span: 2 },
+  { label: "Kontakt Bäcker, Blumen, Fingerfood", team: "t8", start: 3, span: 2 },
+  { label: "Getränke-Bedarfsplan (Wein/Bier/Wasser/Sekt)", team: "t8", start: 3, span: 2 },
+  { label: "Exponate für Auktion einwerben", team: "t6", start: 3, span: 6 },
+  { label: "Vertrag Künstler & Musiker:innen", team: "t3", start: 4, span: 2 },
+  { label: "Sponsoring-Zusagen schriftlich", team: "t5", start: 4, span: 3 },
+  { label: "Layout Plakat & Programm-Postkarte", team: "t5", start: 3, span: 4 },
+  { label: "Bewerbung Zonenveranstaltung Lions Bochum", team: "t7", start: 3, span: 3 },
+  { label: "Kartenvorverkauf läuft", team: "t1", start: 3, span: 7 },
+  { label: "Beauftragung Beleuchtung, Kühlung, Zelte", team: "t4", start: 6, span: 1 },
+  { label: "Beauftragung Wein, Bäcker, Blumen, Fingerfood", team: "t8", start: 6, span: 1 },
+  { label: "Auftragsbestätigungen prüfen (bis 10.09.)", team: "t4", start: 7, span: 2 },
+  { label: "Beleuchtung bei Berger abholen (10./11.09.)", team: "t4", start: 8, span: 1 },
+  { label: "GEMA-Nutzungsmeldung (17.09.)", team: "t7", start: 9, span: 1 },
+  { label: "Einsatzplan final, Wechselgeld, Lionstaler", team: "t2", start: 9, span: 2 },
+  { label: "Lieferungen final bestätigen (22.09.)", team: "t4", start: 10, span: 1 },
+  { label: "Aufbau Mi 23.09.", team: "t4", start: 10, span: 1 },
+  { label: "★ EVENT Do 24.09.2026 ★", team: "event", start: 10, span: 1 },
+  { label: "Abbau + Rückgabe Leihmaterial", team: "t4", start: 10, span: 2 },
+  { label: "GEMA-Nachmeldung (bis 01.10.)", team: "t7", start: 11, span: 1 },
+  { label: "Rechnungen prüfen & bezahlen, Abrechnung", team: "t2", start: 11, span: 3 },
+  { label: "Danke, Debriefing, Spendenübergabe", team: "t5", start: 11, span: 4 },
+];
+
+const teamShort = { t1: "T1", t2: "T2", t3: "T3", t4: "T4", t5: "T5", t6: "T6", t7: "T7", t8: "T8", all: "Alle", event: "★" };
+
+function renderGantt() {
+  const grid = document.getElementById("ganttGrid");
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  // Header 1: months
+  const monthHead = document.createElement("div");
+  monthHead.className = "gantt-header";
+  monthHead.innerHTML = `
+    <div class="gantt-label-cell">Zeitraum</div>
+    <div class="gantt-months">
+      <div style="grid-column: 1 / span 2">Juli 2026</div>
+      <div style="grid-column: 3 / span 4">August 2026</div>
+      <div style="grid-column: 7 / span 4">September 2026</div>
+      <div style="grid-column: 11 / span 4">Oktober 2026</div>
+    </div>
+  `;
+  grid.appendChild(monthHead);
+
+  // Header 2: weeks
+  const weekHead = document.createElement("div");
+  weekHead.className = "gantt-header";
+  const weekNums = [30,31,32,33,34,35,36,37,38,39,40,41,42,43];
+  weekHead.innerHTML = `
+    <div class="gantt-label-cell">Kalenderwoche</div>
+    <div class="gantt-weeks">
+      ${weekNums.map((w, i) => {
+        let style = "";
+        if (i === 0) style = ' style="background:#c8e6c9;color:#1b5e20"'; // heute
+        else if (i === 9) style = ' style="background:#fce4ec;color:#a01e4e"'; // event KW 39
+        return `<div${style}>KW ${w}${i===0?' (heute)':''}</div>`;
+      }).join("")}
+    </div>
+  `;
+  grid.appendChild(weekHead);
+
+  // Task rows
+  ganttTasks.forEach(t => {
+    const row = document.createElement("div");
+    row.className = "gantt-row";
+    const short = teamShort[t.team] || "";
+    row.innerHTML = `
+      <div class="gantt-label-cell">${escapeHtml(t.label)}</div>
+      <div class="gantt-track">
+        <div class="today-marker"></div>
+        <div class="event-marker"></div>
+        <div class="bar ${t.team}" style="grid-column: ${t.start} / span ${t.span}" title="${escapeHtml(t.label)}">${short}</div>
+      </div>
+    `;
+    grid.appendChild(row);
+  });
+}
+
+// Init erfolgt nach Passwort-Freischaltung durch unlockPage() im oberen Script.
+</script>
+</body>
+</html>
