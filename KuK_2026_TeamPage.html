@@ -1238,7 +1238,7 @@ function exportCatering() {
 function mailCatering() {
   const subject = encodeURIComponent("KuK 2026 – Catering-Entscheidungen");
   const body = encodeURIComponent("Hallo Corinna,\n\nhier meine Catering-Entscheidungen für KuK 2026:\n\n" + buildCateringText() + "\n\nViele Grüße");
-  window.location.href = `mailto:c.steinweg@gmail.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:c.steinweg@gmail.com,schlegel70@t-online.de?subject=${subject}&body=${body}`;
 }
 
 function resetCatering() {
@@ -1339,7 +1339,7 @@ function buildCommentsText() {
 function sendByMail() {
   const subject = encodeURIComponent("Kunst und Kirche 2026 – Kommentare & Fragen");
   const body = encodeURIComponent("Hallo Corinna,\n\nhier meine Anmerkungen und Fragen zur KuK 2026:\n\n" + buildCommentsText() + "\n\nViele Grüße");
-  window.location.href = `mailto:c.steinweg@gmail.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:c.steinweg@gmail.com,schlegel70@t-online.de?subject=${subject}&body=${body}`;
 }
 
 function exportComments() {
