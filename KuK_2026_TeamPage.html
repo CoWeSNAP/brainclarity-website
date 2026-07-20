@@ -840,9 +840,11 @@
 <script>
 // ========== Passwort ==========
 const PW_HASH = "db73912ac2c18fc324aefaeacab21760d36e8e26d789634920007745c83fa564";
+const PW_PLAIN = "Allegra2026"; // Fallback wenn crypto.subtle nicht verfügbar (Firefox unter HTTP)
 const PW_UNLOCK_KEY = "kuk2026_unlocked_v1";
 
 async function sha256(text) {
+  if (!window.crypto || !window.crypto.subtle) throw new Error("no subtle");
   const buf = new TextEncoder().encode(text);
   const hash = await crypto.subtle.digest("SHA-256", buf);
   return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
@@ -852,8 +854,15 @@ async function checkPassword(evt) {
   if (evt) evt.preventDefault();
   const input = document.getElementById("pwInput").value;
   const errorEl = document.getElementById("pwError");
-  const hash = await sha256(input);
-  if (hash === PW_HASH) {
+  let ok = false;
+  try {
+    const hash = await sha256(input);
+    ok = (hash === PW_HASH);
+  } catch(e) {
+    // Fallback: Klartext-Vergleich (Firefox unter HTTP hat kein crypto.subtle)
+    ok = (input === PW_PLAIN);
+  }
+  if (ok) {
     try { localStorage.setItem(PW_UNLOCK_KEY, "1"); } catch(e) {}
     unlockPage();
   } else {
